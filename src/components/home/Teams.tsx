@@ -44,7 +44,7 @@ const members: Member[] = [
     {
         id: "brian",
         name: "Brian Morgan",
-        role: "Executive Trustees for employee ownership trust",
+        role: "Executive Trustee for Employee Ownership Trust",
         bio: "Background in investment, startups, and financial structuring. Blends strategic insight with innovative thinking to drive sustainable, win-win growth.",
         avatar: "/images/teams/br.jpeg",
     },

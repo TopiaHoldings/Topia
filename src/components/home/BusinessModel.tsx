@@ -7,13 +7,13 @@ export default function StrategicBusinessModel({ mode = "light" }: { mode?: Mode
     const isDark = mode === "dark";
 
     // 反轉配色：Dark(全頁) → 本區Light；Light(全頁) → 本區深色卡片
-    const sectionBg = isDark ? "bg-white text-green-800" : "bg-green-600 text-gray-50";
-    const titleColor = isDark ? "text-green-800" : "text-gray-50";
-    const underlineColor = isDark ? "bg-green-700/40" : "bg-white/60";
+    const sectionBg = isDark ? "bg-green-600 text-gray-50" : "bg-gray-50 text-green-800";
+    const titleColor = isDark ? "text-gray-50" : "text-green-800";
+    const underlineColor = isDark ? "bg-white/60" : "bg-yellow-50";
 
     const cardCls = isDark
-        ? "border-green-700/20 bg-white text-green-700"
-        : "border-white/25 bg-white/10 text-gray-50";
+        ? "border-white/25 bg-white/10 text-gray-50"
+        : "border-green-700/20 bg-white text-green-700";
 
     // header in-view 動畫
     const headerRef = useRef<HTMLElement | null>(null);
