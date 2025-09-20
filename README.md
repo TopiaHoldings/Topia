@@ -1,22 +1,7 @@
 # Topia Holdings Website
 
-This is a temporary repo for **Topia Holdings**.
+This is a repo for **Topia Holdings**.
 
-## Live Demo
-This is the link for live demo: [Demo](https://topiatesting.netlify.app/)
-
-
-## Links to Design and other Document
-
-- [Proposal](https://docs.google.com/document/d/1dUD0WFzXsvOnbsH13G8qDuoJL-fIMKOcyPaFwkr7WSo/edit?tab=t.0)
-
-- [Personal Note](https://docs.google.com/document/d/1w_TVQiAnOO1CHILcSB-cUACBN_bCcPEi4IiyU3tkPYw/edit?tab=t.0)
-
-- [Bussiness Plan](https://docs.google.com/document/d/1SsibP3C9ZL2qjEIa9D_OOkcXQWSBJxwo/edit)
-
-- [Figma Design](https://www.figma.com/design/fix9T646Mj00I2y2FN1A4C/Topia?node-id=0-1&p=f&t=O5TswnBeueskLiml-0)
-
-- [Initial Design Slides](https://docs.google.com/presentation/d/1dSmG9K4_hFH7ExTpLfCSpVaZzcG1rSLRYhLZoslGJUI/edit?usp=sharing)
 
 ## Project Structure
 
@@ -26,7 +11,7 @@ Inside of the project, you'll see the following folders and files:
 /
 ├── public/                         # static resource (picture...)
 │   └── images/
-│       └── placeholder/            
+│                   
 ├── src/
 │   ├── layouts/
 │   │   └── BaseLayout.astro        # backbone (html/head/body/slot)
@@ -35,25 +20,20 @@ Inside of the project, you'll see the following folders and files:
 │   ├── components/
 │   │   ├── common/                 # common components
 │   │   │   ├── Container.tsx
-│   │   │   ├── SectionHeader.tsx
-│   │   │   ├── Button.tsx
-│   │   │   └── Card.tsx
+│   │   │   ...
 │   │   ├── nav/                    # navigation - header and footer
 │   │   │   ├── Navbar.tsx
 │   │   │   └── Footer.tsx
 │   │   └── home/                   # homepage components
 │   │       ├── Hero.tsx
 │   │       ├── About.tsx
-│   │       ├── Values.tsx
-│   │       ├── Services.tsx
-│   │       ├── Partnership.tsx
-│   │       └── ContactTeaser.tsx
+│   │       ...
 │   ├── content/                    # content files
 │   │   ├── site.ts                 # company info
 │   │   ├── services.ts             # service info
 │   │   └── partnership.ts          # partnership info
 │   └── styles/
-│       └── globals.css             # Tailwind 全域樣式
+│       └── globals.css             
 ├── astro.config.mjs
 ├── tailwind.config.cjs
 ├── postcss.config.cjs
