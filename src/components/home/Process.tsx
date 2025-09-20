@@ -45,20 +45,20 @@ export default function Process({ mode = "dark" }: { mode?: Mode }) {
                 <Header eyebrow={eyebrow} subtext={subtext} />
                 <MaterialsPanel mode={mode} />
 
-                {/* Step 1：左文右圖（底圖 50% 透明 + 疊圖），左右不重疊 */}
+                {/* Step 1 */}
                 <StepBlock
                     index={1}
                     title="Intake"
                     desc="Receive and register plastics from suppliers; verify material type, source, and condition."
                     mode={mode}
                     variant="overlay-right"
-                    baseImg="/images/p/operation/truck2.png"   // 長形卡車圖
-                    overlayImg="/images/p/operation/box.png"   // 透明背景 PNG 疊圖
+                    baseImg="/images/p/operation/truck2.png"
+                    overlayImg="/images/p/operation/box.png"
                 />
 
                 {/* <ArrowBetween mode={mode} /> */}
 
-                {/* Step 2：左圖右文（40:60） */}
+                {/* Step 2 */}
                 <StepBlock
                     index={2}
                     title="Storage"
@@ -70,7 +70,7 @@ export default function Process({ mode = "dark" }: { mode?: Mode }) {
 
                 {/* <ArrowBetween mode={mode} /> */}
 
-                {/* Step 3：右圖左文（40:60） */}
+                {/* Step 3 */}
                 <StepBlock
                     index={3}
                     title="Prepared for Grind"
@@ -82,7 +82,7 @@ export default function Process({ mode = "dark" }: { mode?: Mode }) {
 
                 {/* <ArrowBetween mode={mode} /> */}
 
-                {/* Step 4：左右對調（左圖右文）且為兩張正方形拼接（40:60） */}
+                {/* Step 4 */}
                 <StepBlock
                     index={4}
                     title="Processing"
@@ -95,7 +95,7 @@ export default function Process({ mode = "dark" }: { mode?: Mode }) {
 
                 {/* <ArrowBetween mode={mode} /> */}
 
-                {/* Step 5：置中（上文下圖） */}
+                {/* Step 5 */}
                 <StepBlock
                     index={5}
                     title="Final Product"
@@ -106,18 +106,15 @@ export default function Process({ mode = "dark" }: { mode?: Mode }) {
                 />
             </div>
 
-            {/* 少量工具樣式（無需外部 CSS 檔） */}
             <style>{`
         @keyframes bounce-slow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
         .animate-bounce-slow { animation: bounce-slow 1.6s ease-in-out infinite; }
 
-        /* 讓圖片區左右貼齊螢幕（不受容器限制） */
         .full-bleed {
           width: 100vw;
           margin-left: 50%;
           transform: translateX(-50%);
         }
-        /* 圖片裁切容器：不改變圖片比例，僅以容器裁切，最高 45vh */
         .img-crop {
           max-height: 45vh;
           height: 45vh;
@@ -147,13 +144,12 @@ function Header({ eyebrow, subtext }: { eyebrow: string; subtext: string }) {
     );
 }
 
-/* ------- Step Block（40:60；文字與圖片不重合；修正溢出） ------- */
 type StepVariant =
-    | "overlay-right"      // 步1：左文右圖(底圖+疊圖)
-    | "image-left"         // 步2：左圖右文
-    | "image-right"        // 步3：右圖左文
-    | "image-left-duo"     // 步4：左圖(兩正方形)右文
-    | "centered";          // 步5：置中（上文下圖）
+    | "overlay-right"
+    | "image-left"
+    | "image-right"
+    | "image-left-duo"
+    | "centered";
 
 function StepBlock({
     index, title, desc, mode, variant,
@@ -187,7 +183,6 @@ function StepBlock({
             ].join(" ")}
             style={{ transitionDelay: inView ? "80ms" : "0ms" }}
         >
-            {/* Step chip：步 1–4 左對齊；步 5（centered）置中，並在左側顯示 icon */}
             <div
                 className={[
                     "flex items-center gap-2",
@@ -208,7 +203,6 @@ function StepBlock({
             <p className={`mt-3 leading-relaxed ${descCls}`}>{desc}</p>
         </article>
     );
-    /* 單張圖片容器：不再使用 full-bleed，避免超欄；以容器裁切並包住 hover 放大 */
     const SingleImage = baseImg ? (
         <div
             className={[
@@ -227,7 +221,6 @@ function StepBlock({
         </div>
     ) : null;
 
-    /* 兩張正方形拼接：同樣不使用 full-bleed */
     const DuoSquares = imgOne && imgTwo ? (
         <div
             className={[
@@ -258,7 +251,6 @@ function StepBlock({
         </div>
     ) : null;
 
-    /* 疊圖（步1）：容器不使用 full-bleed，留在欄位內；底圖 50% 透明 */
     const OverlayRight = baseImg ? (
         <div
             className={[
@@ -285,7 +277,6 @@ function StepBlock({
         </div>
     ) : null;
 
-    /* 40:60 full-bleed 在「整列」上，內層不再使用 full-bleed */
     const Row = ({ left, right }: { left: React.ReactNode; right: React.ReactNode }) => (
         <div ref={ref} className="mt-12 md:mt-16">
             {/* <div className="full-bleed grid grid-cols-10 items-stretch">
@@ -402,32 +393,3 @@ function MaterialsPanel({ mode }: { mode: Mode }) {
     );
 }
 
-
-function SwooshDecor({ mode }: { mode: Mode }) {
-    const isDark = mode === "dark";
-    // 使用 currentColor 當作填色；改這裡就能換色
-    const colorClass = isDark ? "text-yellow-50" : "text-emerald-700";
-
-    return (
-        <div className={`pointer-events-none absolute inset-0 ${colorClass}`} aria-hidden>
-            {/* 左上 */}
-            <span
-                className="absolute block h-6 w-10 bg-current opacity-90
-                   [clip-path:polygon(8%_60%,88%_10%,100%_100%)] rounded-[12px]"
-                style={{ top: "-10px", left: "-6px", transform: "rotate(-28deg)" }}
-            />
-            {/* 正上（置中） */}
-            <span
-                className="absolute block h-7 w-12 bg-current opacity-90
-                   [clip-path:polygon(10%_65%,90%_0%,100%_100%)] rounded-[14px]"
-                style={{ top: "-16px", left: "50%", transform: "translateX(-50%) rotate(0deg)" }}
-            />
-            {/* 右上 */}
-            <span
-                className="absolute block h-6 w-10 bg-current opacity-90
-                   [clip-path:polygon(8%_10%,92%_60%,0%_100%)] rounded-[12px]"
-                style={{ top: "-10px", right: "-6px", transform: "rotate(28deg)" }}
-            />
-        </div>
-    );
-}
