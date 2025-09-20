@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* .arvo-regular {
+  font-family: "Arvo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.arvo-bold {
+  font-family: "Arvo", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.arvo-regular-italic {
+  font-family: "Arvo", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.arvo-bold-italic {
+  font-family: "Arvo", serif;
+  font-weight: 700;
+  font-style: italic;
+} */
+
+.arvo-regular {
+  font-family: "Arvo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.arvo-bold {
+  font-family: "Arvo", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.arvo-regular-italic {
+  font-family: "Arvo", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.arvo-bold-italic {
+  font-family: "Arvo", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+@keyframes flip {
+  0% { transform: rotateY(0deg); opacity: 0; }
+  100% { transform: rotateY(360deg); opacity: 1; }
+}
+
+.animate-flip {
+  animation: flip 1s ease-out forwards;
+}
+
+@font-face {
+  font-family: 'papyrus';
+  src: url('/font/papyrus.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+@theme {
+  /* --font-*: initial; */
+  --font-brand: "Montserrat", sans-serif;
+  --font-brand-regular: "Montserrat", sans-serif;
+  --font-brand-bold: "Montserrat", sans-serif;
+  --font-brand-italic: "Montserrat", sans-serif;
+  --font-brand-bold-italic: "Montserrat", sans-serif;
+
+  --font-papyrus: "papyrus", sans-serif;
+
+  /* --color-*: initial; */
+  --color-while: #FAFAFA
+  
+  /* Green */
+  --color-green-50: #C8FDA6;
+  --color-green-100: #91D94E;
+  --color-green-200: #74AE3D;
+  --color-green-300: #58862D;
+  --color-green-400: #3E601E;
+  --color-green-500: #253C0F;
+  --color-green-600: #0F1B04;
+
+  /* Teal */
+  --color-teal-50: #7FEDD7;
+  --color-teal-100: #67C2B0;
+  --color-teal-200: #50998A;
+  --color-teal-300: #3A7267;
+  --color-teal-400: #254D45;
+  --color-teal-500: #122B26;
+  --color-teal-600: #061310;
+
+  /* Yellow */
+  --color-yellow-50: #FFE245;
+  --color-yellow-100: #D4BA00;
+  --color-yellow-200: #A99400;
+  --color-yellow-300: #806F00;
+  --color-yellow-400: #594D00;
+  --color-yellow-500: #352D00;
+  --color-yellow-600: #151100;
+
+  /* Gray */
+  --color-gray-50: #FAFAFA;
+  --color-gray-100: #D1D1D1;
+  --color-gray-200: #AAAAAA;
+  --color-gray-300: #858585;
+  --color-gray-400: #616161;
+  --color-gray-500: #3F3F3F;
+  --color-gray-600: #212121;
+
+  /* Slate */
+  --color-slate-50: #BFDFDA;
+  --color-slate-100: #9CB6B2;
+  --color-slate-200: #7A8F8C;
+  --color-slate-300: #5A6A68;
+  --color-slate-400: #3C4746;
+  --color-slate-500: #202726;
+  --color-slate-600: #0E1211;
+
+  /* Amber */
+  --color-amber-50: #FFFAE0;
+  --color-amber-100: #E6D300;
+  --color-amber-200: #BBAC00;
+  --color-amber-300: #928600;
+  --color-amber-400: #6B6200;
+  --color-amber-500: #464000;
+  --color-amber-600: #252100;
+
+  /* Stone */
+  --color-stone-50: #EBEEE8;
+  --color-stone-100: #C3C6C0;
+  --color-stone-200: #9D9F9A;
+  --color-stone-300: #787A76;
+  --color-stone-400: #555754;
+  --color-stone-500: #353634;
+  --color-stone-600: #171817;
+}

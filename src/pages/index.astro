@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/nav/Navbar";
+import Footer from "../components/nav/Footer";
+import Hero from "../components/home/Hero";
+import About from "../components/home/About";
+import Mission from "../components/home/Mission";
+import Services from "../components/home/Services";
+import Partner from "../components/home/Partner";
+import Contact from "../components/home/Contact";
+import Process from "../components/home/Process";
+import Teams from "../components/home/Teams";
+import EOT from "../components/home/EOT";
+import BusinessModel from "../components/home/BusinessModel";
+import ScrollToTop from "../components/common/ScrollToTop";
+---
+
+<BaseLayout
+	title="Topia – Home"
+	description="Transforming waste into resources."
+>
+	<Navbar client:load />
+	<Hero client:load photoSrc="/images/p/hero/L1310937_l.jpeg" />
+	<About client:load />
+	<!-- <Mission client:load /> -->
+	<Services client:load mode="dark" />
+	<Process client:load mode="light" />
+	<Teams client:load mode="dark" />
+	<!-- <Partner client:load /> -->
+	<EOT client:load mode="light" />
+	<BusinessModel client:load mode="light" />
+	<Contact client:load />
+	<Footer client:load />
+	<ScrollToTop client:load />
+</BaseLayout>

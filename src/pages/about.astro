@@ -1,0 +1,20 @@
+---
+import "../styles/global.css";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/nav/Navbar";
+import Footer from "../components/nav/Footer";
+import SubpageHero from "../components/common/SubpageHero";
+import AboutUs from "../components/subpage/AboutUs";
+---
+
+<BaseLayout title="About Us">
+  <Navbar client:load />
+  <SubpageHero
+    client:load
+    bgImage="/images/green_curve_bg.svg"
+    title="About US"
+  />
+  <AboutUs client:load />
+  <Footer client:load />
+</BaseLayout>

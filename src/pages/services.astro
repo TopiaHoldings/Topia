@@ -1,0 +1,20 @@
+---
+import "../styles/global.css";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/nav/Navbar";
+import Footer from "../components/nav/Footer";
+import SubpageHero from "../components/common/SubpageHero";
+import ServiceDetail from "../components/subpage/ServiceDetail";
+---
+
+<BaseLayout title="Services">
+  <Navbar client:load />
+  <SubpageHero
+    client:load
+    bgImage="/images/green_curve_bg.svg"
+    title="Services"
+  />
+  <ServiceDetail client:load />
+  <Footer client:load />
+</BaseLayout>

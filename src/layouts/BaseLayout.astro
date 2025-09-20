@@ -1,0 +1,35 @@
+---
+const {
+  title = "Topia",
+  description = "Post-Industrial Plastic Management Redefined. Topia helps businesses transform waste plastics into valuable resources. Circular economy, recycling services, and sustainable solutions at scale.",
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      property="og:title"
+      content="Topia - Post-Industrial Plastic Management Redefined"
+    />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/Logo_org.png" />
+    <meta property="og:type" content="website" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="/images/logo_wo Small.png" sizes="any" />
+    <link rel="icon" type="image/png" href="/images/logo_wo Small.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="antialiased font-brand text-slate-800 bg-gray-50">
+    <slot />
+  </body>
+</html>
