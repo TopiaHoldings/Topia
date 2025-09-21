@@ -103,14 +103,14 @@ export default function ContactModal({ open, onClose, title = "Contact Us" }: Pr
                             className="space-y-6"
                         >
                             {/* Netlify required hidden field */}
-                            <input type="hidden" name="form-name" value="contact" />
+                            {/* <input type="hidden" name="form-name" value="contact" />
                             <input
                                 type="text"
                                 name="bot-field"
                                 className="hidden"
                                 tabIndex={-1}
                                 autoComplete="off"
-                            />
+                            /> */}
 
                             <div>
                                 <label
