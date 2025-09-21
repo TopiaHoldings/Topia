@@ -52,6 +52,12 @@ export default function Contact() {
             <FullBleedMap caption="" />
           </div>
           <ContactModal open={open} onClose={() => setOpen(false)} />
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+            <input type="text" name="name" autoComplete="name" />
+            <input type="email" name="email" autoComplete="email" />
+            <textarea name="message"></textarea>
+            <input type="text" name="bot-field" />
+          </form>
         </div>
       </Container>
     </section>

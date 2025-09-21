@@ -64,12 +64,7 @@ export default function Footer() {
                   © 2025 {site.official_name} All rights reserved.
                 </p>
               </div>
-              <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
-                <input type="text" name="name" />
-                <input type="email" name="email" />
-                <textarea name="message"></textarea>
-                <input type="text" name="bot-field" />
-              </form>
+
             </div>
           </div>
         </div>
