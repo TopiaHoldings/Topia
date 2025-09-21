@@ -83,10 +83,11 @@ export default function ContactModal({ open, onClose, title = "Contact Us" }: Pr
                         method="POST"
                         data-netlify="true"
                         netlify-honeypot="bot-field"
+                        action="/?submitted=1"
                         className="space-y-6"
                     >
-                        {/* <input type="hidden" name="form-name" value="contact" />
-                        <input type="text" name="bot-field" className="hidden" tabIndex={-1} autoComplete="off" /> */}
+                        <input type="hidden" name="form-name" value="contact" />
+                        <input type="text" name="bot-field" className="hidden" tabIndex={-1} autoComplete="off" />
 
                         <div>
                             <label className="block text-sm font-medium text-slate-700 text-left">Full Name</label>
