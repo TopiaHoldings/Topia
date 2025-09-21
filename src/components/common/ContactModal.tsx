@@ -21,41 +21,6 @@ export default function ContactModal({ open, onClose, title = "Contact Us" }: Pr
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState(false);
 
-    // function encode(data: Record<string, string>) {
-    //     return Object.keys(data)
-    //         .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(data[k]))
-    //         .join("&");
-    // }
-
-    // async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    //     e.preventDefault();
-    //     setError(null);
-    //     setSuccess(false);
-
-    //     const fd = new FormData(e.currentTarget);
-    //     const payload: Record<string, string> = {
-    //         "form-name": "contact",
-    //     };
-    //     fd.forEach((value, key) => {
-    //         payload[key] = value.toString();
-    //     });
-
-    //     setSending(true);
-    //     try {
-    //         await fetch("/", {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //             body: encode(payload),
-    //         });
-
-    //         e.currentTarget.reset();
-    //         setSuccess(true); // 顯示感謝訊息
-    //     } catch (err) {
-    //         setError("Submission failed. Please try again.");
-    //     } finally {
-    //         setSending(false);
-    //     }
-    // }
     function encode(data: Record<string, string>) {
         return Object.keys(data)
             .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(data[k]))
@@ -66,33 +31,35 @@ export default function ContactModal({ open, onClose, title = "Contact Us" }: Pr
         e.preventDefault();
         setError(null);
         setSuccess(false);
+        const form = e.currentTarget as HTMLFormElement;
 
         const fd = new FormData(e.currentTarget);
-        const payload: Record<string, string> = { "form-name": "contact" };
-        fd.forEach((v, k) => (payload[k] = String(v)));
-
+        const payload: Record<string, string> = {
+            "form-name": "contact",
+        };
+        fd.forEach((value, key) => {
+            payload[key] = value.toString();
+        });
+        console.log({ payload });
         setSending(true);
         try {
-            const res = await fetch("/", {
+            await fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: encode(payload),
             });
 
-            const successStatuses = [200, 201, 202, 204, 301, 302, 303];
-            if (res.ok || successStatuses.includes(res.status)) {
-                e.currentTarget.reset();
-                setSuccess(true);
-                return;
-            }
-
-            setError(`Submission failed (status ${res.status}). Please try again.`);
+            form.reset();
+            setSuccess(true);
         } catch (err) {
+            console.error(err);
             setError("Submission failed. Please try again.");
         } finally {
+
             setSending(false);
         }
     }
+
     if (!open) return null;
 
     return (
