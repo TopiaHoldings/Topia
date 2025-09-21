@@ -90,11 +90,13 @@ export default function ContactModal({ open, onClose, title = "Contact Us" }: Pr
                         <input type="text" name="bot-field" className="hidden" tabIndex={-1} autoComplete="off" />
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 text-left">Full Name</label>
+                            <label className="block text-sm font-medium text-slate-700 text-left" htmlFor="name">Full Name</label>
                             <input
+                                id="name"
                                 ref={firstFieldRef}
                                 name="name"
                                 type="text"
+                                autoComplete="name"
                                 placeholder="What's your full name?"
                                 className="mt-1 w-full border-0 border-b border-slate-300/70 bg-transparent px-0 py-2 outline-none focus:border-green-600 focus:ring-0 hover:border-green-600"
                                 required
@@ -102,22 +104,27 @@ export default function ContactModal({ open, onClose, title = "Contact Us" }: Pr
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 text-left">Email Address</label>
+                            <label className="block text-sm font-medium text-slate-700 text-left" htmlFor="email">Email Address</label>
                             <input
+
+                                id="email"
                                 name="email"
                                 type="email"
                                 placeholder="Where can we reach you?"
+                                autoComplete="email"
                                 className="mt-1 w-full border-0 border-b border-slate-300/70 bg-transparent px-0 py-2 outline-none focus:border-green-600 focus:ring-0 hover:border-green-600"
                                 required
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 text-left">Your Message</label>
+                            <label className="block text-sm font-medium text-slate-700 text-left" htmlFor="message">Your Message</label>
                             <textarea
+                                id="message"
                                 name="message"
                                 rows={5}
                                 placeholder="Tell us how we can help you…"
+                                autoComplete="off"
                                 className="mt-1 w-full rounded-lg border border-slate-300/70 px-3 py-2 outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 hover:border-green-600"
                                 required
                             />
