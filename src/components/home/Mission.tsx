@@ -45,7 +45,7 @@ export default function Mission() {
         stop();
         timerRef.current = window.setTimeout(() => {
             setActive((a) => (a + 1) % CARDS.length);
-        }, 5000); // 自動輪播秒數
+        }, 5000);
     };
     const stop = () => {
         if (timerRef.current) {
@@ -54,18 +54,14 @@ export default function Mission() {
         }
     };
 
-    const prev = () => setActive((a) => (a - 1 + CARDS.length) % CARDS.length);
-    const next = () => setActive((a) => (a + 1) % CARDS.length);
 
     return (
         <section id="core-mission" className="relative isolate w-full bg-green-600">
-            {/* <Wave position="top" /> */}
             <div
                 className="mx-auto max-w-7xl px-6 py-16 md:py-24"
                 onMouseEnter={stop}
                 onMouseLeave={start}
             >
-                {/* Header */}
                 <header className="mx-auto max-w-3xl text-center">
                     <p className="text-yellow-50 text-sm uppercase tracking-[0.2em]">
                         Core Mission
@@ -73,12 +69,8 @@ export default function Mission() {
                     <h2 className="mt-3 text-3xl md:text-4xl font-semibold text-white">
                         What drives our circular impact
                     </h2>
-                    {/* <p className="mt-3 text-slate-600 dark:text-slate-300">
-                        Use a three-column layout to visually separate the core values. The center card is emphasized.
-                    </p> */}
                 </header>
 
-                {/* Cards */}
                 <div className="mt-10 flex justify-center">
                     <div className="grid gap-6 sm:gap-8 md:grid-cols-3 items-stretch max-w-5xl">
                         {CARDS.map((c, i) => {
@@ -154,10 +146,7 @@ export default function Mission() {
     );
 }
 
-/** 上方圓形媒體：預設用 react-icons。若要換成圖片：
- *  將內層 <div className="..."> 替換成
- *    <img src="/images/xxx.jpg" alt="" className="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover" />
- */
+
 function IconCircle({ icons, active }: { icons: JSX.Element[]; active: boolean }) {
     return (
         <div
@@ -168,7 +157,6 @@ function IconCircle({ icons, active }: { icons: JSX.Element[]; active: boolean }
                 active ? "scale-110 shadow-lg" : "scale-95 opacity-90",
             ].join(" ")}
         >
-            {/* 多 icon 時，做一個簡單輪播/淡入淡出 */}
             <span className="relative h-7 w-7 md:h-8 md:w-8">
                 {icons.map((Ico, idx) => (
                     <i

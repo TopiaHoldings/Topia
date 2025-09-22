@@ -9,7 +9,6 @@ type Props = {
 
 export default function Hero({
     photoSrc,
-
     className = "",
 }: Props) {
     return (

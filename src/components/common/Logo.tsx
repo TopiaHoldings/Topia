@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 
 type LogoProps = {
-    titleColor?: string;   // TOPIA 顏色
-    sloganColor?: string;  // 標語顏色
+    titleColor?: string;
+    sloganColor?: string;
 };
 
 export default function Logo({
@@ -22,7 +22,7 @@ export default function Logo({
     return (
         <div className={`flex flex-col items-center text-center mx-auto ${isDesktop ? "animate-flip" : ""}`}>
             <img
-                src="/images/logo_hand.PNG"
+                src="/images/logo_hand.png"
                 alt="Topia logo"
                 className="h-36 w-auto"
             />

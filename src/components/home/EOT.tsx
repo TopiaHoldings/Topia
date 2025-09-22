@@ -1,14 +1,30 @@
 // src/components/home/EOT.tsx
 import { useEffect, useRef, useState } from "react";
 import {
-    Users2,
-    ShieldCheck,
-    Leaf,
-    TrendingUp,
-    Scale,
-    RefreshCw,
-    Landmark
-} from "lucide-react";
+    RiCommunityFill,
+    RiHeart2Fill,
+    RiLeafFill,
+    RiLineChartFill,
+} from "react-icons/ri";
+
+const purposes = [
+    {
+        text: "Hold and manage shares in the Company for the long-term benefit of current and future employees.",
+        Icon: RiCommunityFill,
+    },
+    {
+        text: "Promote employee engagement, well-being, and a sense of shared ownership.",
+        Icon: RiHeart2Fill,
+    },
+    {
+        text: "Ensure that the Company operates in a sustainable, ethical, and inclusive manner, aligning with its core values.",
+        Icon: RiLeafFill,
+    },
+    {
+        text: "Support long-term company performance and alignment of employee and organizational interests.",
+        Icon: RiLineChartFill,
+    },
+];
 
 type Mode = "light" | "dark";
 
@@ -33,13 +49,6 @@ export default function EOT({ mode = "light" }: { mode?: Mode }) {
     }, []);
 
 
-    // const isDark = mode === "dark";
-    // const sectionBg = isDark ? "bg-green-600 text-gray-50" : "bg-gray-50 text-slate-900";
-    // const eyebrow = isDark ? "text-yellow-50" : "text-emerald-700";
-    // const subtext = isDark ? "text-gray-50/85" : "text-slate-600";
-
-
-
     const isDark = mode === "dark";
     const wrapCls = isDark
         ? "bg-green-600 text-gray-50"
@@ -59,7 +68,6 @@ export default function EOT({ mode = "light" }: { mode?: Mode }) {
     return (
         <section id="EOT" ref={sectionRef} className={`relative isolate w-full ${wrapCls}`}>
             <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-                {/* Header (consistent design) */}
                 <header
                     className={[
                         "max-w-3xl mx-auto text-center transform transition-all duration-700 ease-out",
@@ -76,7 +84,6 @@ export default function EOT({ mode = "light" }: { mode?: Mode }) {
                     </p>
                 </header>
 
-                {/* Intro / Definition */}
                 <div
                     className={[
                         "mt-12 grid grid-cols-1 items-center gap-8 md:gap-12 md:grid-cols-2",
@@ -91,35 +98,31 @@ export default function EOT({ mode = "light" }: { mode?: Mode }) {
                             <div className="mt-2 h-0.5 w-14 rounded bg-yellow-50" aria-hidden="true" />
                         </div>
 
-                        <p className="mt-4 leading-relaxed">
-                            An employee ownership trust (EOT) is a governance model where a trust holds a controlling interest in a company on behalf of its employees.
+                        <p className="mt-4 leading-relaxed font-semibold">
+                            An{" "}
+                            <span className="text-emerald-700 font-semibold">
+                                employee ownership trust (EOT)
+                            </span>{" "}
+                            is a governance model where a trust holds a controlling interest in a
+                            company on behalf of its employees.
                         </p>
+
                     </div>
 
-                    {/* Image placeholder */}
-                    {/* <figure
-                        className={`relative w-full aspect-[16/10] rounded-2xl border ${cardBorder} ${cardBg} grid place-items-center`}
-                        aria-label="EOT illustration placeholder"
-                    >
-                        <div className="text-center px-6">
-                            <Users2 className="h-10 w-10 mx-auto" aria-hidden />
-                            <p className="mt-2 text-sm opacity-80">Image placeholder</p>
-                        </div>
-                    </figure> */}
+
                     <figure
-                        className={`relative w-full aspect-[16/10] rounded-2xl border ${cardBorder} ${cardBg} overflow-hidden`}
+                        className={`relative w-full aspect-[16/10] rounded-2xl  ${cardBg} overflow-hidden`}
                         aria-label="EOT illustration"
                     >
                         <img
-                            src="/images/p/operation/L1310876.jpeg"
+                            src="/images/p/eot/eot.jpeg"
                             alt="Employee Ownership Trust illustration"
-                            className="h-full w-full object-cover"
+                            className="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-105"
                             loading="lazy"
                         />
                     </figure>
                 </div>
 
-                {/* PURPOSE OF THE TRUST */}
                 <section
                     className={[
                         "mt-16 transform transition-all duration-700 ease-out",
@@ -135,55 +138,31 @@ export default function EOT({ mode = "light" }: { mode?: Mode }) {
                         <div className="mt-2 h-0.5 w-14 rounded bg-yellow-50" aria-hidden="true" />
                     </div>
 
-                    <p className="mt-4">The primary purpose of the Trust is to:</p>
+                    <p className="mt-4 font-semibold">The primary purpose of the Trust is to:</p>
 
-                    {/* 手機單欄、桌機兩欄卡片 */}
+
                     <ul className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        {[
-                            "Hold and manage shares in the Company for the long-term benefit of current and future employees.",
-                            "Promote employee engagement, well-being, and a sense of shared ownership.",
-                            "Ensure that the Company operates in a sustainable, ethical, and inclusive manner, aligning with its core values.",
-                            "Support long-term company performance and alignment of employee and organizational interests.",
-                        ].map((text, i) => (
+                        {purposes.map(({ text, Icon }, i) => (
                             <li
                                 key={`purpose-${i}`}
-                                className={`rounded-2xl border ${cardBorder} ${cardBg} p-5 leading-relaxed`}
+                                className={`rounded-2xl border ${cardBorder} p-0 overflow-hidden`}
                             >
-                                {text}
+                                <div className="flex items-stretch">
+                                    <div className="self-stretch p-5 flex items-center justify-center min-w-[84px]">
+                                        <div className="rounded-xl text-green-500 p-4">
+                                            <Icon className="h-12 w-12" aria-hidden />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex-1 p-5 flex items-center">
+                                        <p className="leading-relaxed">{text}</p>
+                                    </div>
+                                </div>
                             </li>
                         ))}
                     </ul>
                 </section>
 
-                {/* Strategic Business Model */}
-                {/* <section
-                    className={[
-                        "mt-16 transform transition-all duration-700 ease-out",
-                        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
-                    ].join(" ")}
-                    style={{ transitionDelay: inView ? "320ms" : "0ms" }}
-                    aria-labelledby="strategic-heading"
-                >
-
-                    <div className="mb-6">
-                        <h3 id="strategic-heading" className={`text-2xl font-semibold ${titleCls}`}>
-                            Strategic Business Model
-                        </h3>
-                        <div className="mt-2 h-0.5 w-14 rounded bg-yellow-50" aria-hidden="true" />
-                    </div>
-
-                    <ul className="mt-6 space-y-4">
-                        <li className={`rounded-2xl border ${cardBorder} ${cardBg} p-5`}>
-                            • Develop a culture of stewardship and employee engagement.
-                        </li>
-                        <li className={`rounded-2xl border ${cardBorder} ${cardBg} p-5`}>
-                            • Ensure balance of power
-                        </li>
-                        <li className={`rounded-2xl border ${cardBorder} ${cardBg} p-5`}>
-                            • Periodic independent reviews of governance effectiveness.
-                        </li>
-                    </ul>
-                </section> */}
             </div>
         </section>
     );

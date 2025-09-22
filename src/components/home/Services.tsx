@@ -29,7 +29,7 @@ const services: Service[] = [
     title: "Waste Management & Resource Recovery",
     description:
       "Partnering on waste-to-energy and industrial waste recovery to reduce environmental impact.",
-    image: "/images/p/IMG_7317.jpeg",
+    image: "/images/p/IMG_7315.jpeg",
   },
 ];
 
@@ -83,7 +83,6 @@ export default function Services({ mode = "light" }: { mode?: Mode }) {
   return (
     <section id="services" className={`py-16 md:py-24 ${sectionBg}`}>
       <Container>
-        {/* Header */}
         <header
           ref={headerRef as any}
           className={[
@@ -99,7 +98,6 @@ export default function Services({ mode = "light" }: { mode?: Mode }) {
           </p>
         </header>
 
-        {/* Cards with reveal + hover animation (image on top, text below, text no frame) */}
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
             <ServiceCard

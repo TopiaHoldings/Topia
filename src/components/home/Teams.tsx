@@ -1,5 +1,4 @@
 // src/components/home/Teams.tsx
-// TBD：其他成員 改兩兩一列，看要不要一樣大或是小一點或是讓主要的兩位更明顯一點
 import { useEffect, useRef, useState } from "react";
 
 type Member = {
@@ -139,25 +138,7 @@ export default function Teams({ mode = "light" }: { mode?: Mode }) {
                     ))}
                 </ul>
 
-                {/* <ul className="mt-10 grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 justify-items-center" aria-label="Team members">
-                    {rest.map((m, i) => (
-                        <FadeInLi
-                            key={m.id}
-                            inView={inView}
-                            delay={i * 100}
-                            className={`group flex-1 basis-[360px] max-w-[385px] rounded-2xl border ${cardCls} p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow `}
-                        >
-                            <div className="flex items-start gap-4">
-                                <Avatar name={m.name} src={m.avatar} />
-                                <div>
-                                    <h3 className={`text-lg font-semibold ${nameCls}`}>{m.name}</h3>
-                                    {m.role && <p className={`italic text-sm ${roleCls}`}>{m.role}</p>}
-                                </div>
-                            </div>
-                            <p className={`mt-4 text-sm leading-relaxed ${bioCls}`}>{m.bio}</p>
-                        </FadeInLi>
-                    ))}
-                </ul> */}
+
                 <ul
                     className="mt-10 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
                     aria-label="Team members"

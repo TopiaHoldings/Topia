@@ -40,7 +40,7 @@ export default function ContactModal({ open, onClose, title = "Contact Us" }: Pr
         fd.forEach((value, key) => {
             payload[key] = value.toString();
         });
-        console.log({ payload });
+        // console.log({ payload });
         setSending(true);
         try {
             await fetch("/", {
@@ -52,7 +52,7 @@ export default function ContactModal({ open, onClose, title = "Contact Us" }: Pr
             form.reset();
             setSuccess(true);
         } catch (err) {
-            console.error(err);
+            // console.error(err);
             setError("Submission failed. Please try again.");
         } finally {
 

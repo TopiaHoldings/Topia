@@ -1,7 +1,7 @@
 import Container from "../common/Container";
 import { site } from "../../content/site";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+// import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -29,7 +29,6 @@ export default function Footer() {
 
             <div className="w-full">
               <div className="grid grid-cols-3 gap-6 items-end pb-4 border-b border-white/30">
-                {/* 左：1/3 */}
                 <div className="col-span-1 flex items-end gap-4">
                   {/* <a href="#" className="h-6 w-6 rounded-full bg-white/40 hover:bg-gray-50 text-slate-900 flex items-center justify-center backdrop-blur-sm transition" aria-label="Facebook">
                     <FaFacebook />

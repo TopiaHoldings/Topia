@@ -30,6 +30,37 @@ const {
       href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <!-- <script is:inline>
+      document.addEventListener("loadGA", (e) => {
+        const measurementId = e.detail;
+        if (window.__gaLoaded) return;
+        window.__gaLoaded = true;
+
+        const gaScript = document.createElement("script");
+        gaScript.async = true;
+        gaScript.src =
+          "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
+        document.head.appendChild(gaScript);
+
+        gaScript.addEventListener("load", function () {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            window.dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag("js", new Date());
+          gtag("config", measurementId);
+        });
+      });
+
+      try {
+        if (localStorage.getItem("cookie-consent") === "accepted") {
+          document.dispatchEvent(
+            new CustomEvent("loadGA", { detail: "G-JY0BNJRZS6" }),
+          );
+        }
+      } catch (e) {}
+    </script> -->
   </head>
 
   <body class="antialiased font-brand text-slate-800 bg-gray-50">

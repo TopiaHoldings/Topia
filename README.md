@@ -35,8 +35,6 @@ Inside of the project, you'll see the following folders and files:
 │   └── styles/
 │       └── globals.css             
 ├── astro.config.mjs
-├── tailwind.config.cjs
-├── postcss.config.cjs
 ├── tsconfig.json
 └── package.json
 ```

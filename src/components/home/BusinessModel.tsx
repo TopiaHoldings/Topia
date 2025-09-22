@@ -1,21 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import Container from "../common/Container";
+import { RiTeamFill, RiScales3Fill, RiSearchEyeFill } from "react-icons/ri";
 
 type Mode = "light" | "dark";
 
 export default function StrategicBusinessModel({ mode = "light" }: { mode?: Mode }) {
     const isDark = mode === "dark";
 
-    // 反轉配色：Dark(全頁) → 本區Light；Light(全頁) → 本區深色卡片
     const sectionBg = isDark ? "bg-green-600 text-gray-50" : "bg-gray-50 text-green-800";
     const titleColor = isDark ? "text-gray-50" : "text-green-800";
-    const underlineColor = isDark ? "bg-white/60" : "bg-yellow-50";
+    const underlineColor = "bg-yellow-50";
 
     const cardCls = isDark
         ? "border-white/25 bg-white/10 text-gray-50"
         : "border-green-700/20 bg-white text-green-700";
 
-    // header in-view 動畫
     const headerRef = useRef<HTMLElement | null>(null);
     const [inViewHeader, setInViewHeader] = useState(false);
     useEffect(() => {
@@ -30,34 +29,15 @@ export default function StrategicBusinessModel({ mode = "light" }: { mode?: Mode
         return () => io.disconnect();
     }, []);
 
-    // 卡片 in-view 小工具
-    function useInView<T extends HTMLElement>(threshold = 0.14) {
-        const ref = useRef<T | null>(null);
-        const [inView, setInView] = useState(false);
-        useEffect(() => {
-            const el = ref.current;
-            if (!el) return;
-            const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-            if (mq.matches) { setInView(true); return; }
-            const io = new IntersectionObserver(([entry]) => {
-                if (entry.isIntersecting) { setInView(true); io.disconnect(); }
-            }, { threshold });
-            io.observe(el);
-            return () => io.disconnect();
-        }, [threshold]);
-        return { ref, inView };
-    }
-
     const items = [
-        "Develop a culture of stewardship and employee engagement.",
-        "Ensure balance of power",
-        "Periodic independent reviews of governance effectiveness.",
+        { text: "Develop a culture of stewardship and employee engagement.", Icon: RiTeamFill },
+        { text: "Ensure balance of power", Icon: RiScales3Fill },
+        { text: "Periodic independent reviews of governance effectiveness.", Icon: RiSearchEyeFill },
     ];
 
     return (
         <section id="strategic-business-model" className={`py-16 md:py-24 ${sectionBg}`}>
             <Container>
-                {/* Header：置中、h3 有底線（僅原本內容） */}
                 <header
                     ref={headerRef as any}
                     className={[
@@ -69,41 +49,49 @@ export default function StrategicBusinessModel({ mode = "light" }: { mode?: Mode
                     <h3 className={`text-2xl md:text-3xl font-semibold ${titleColor}`}>
                         Strategic Business Model
                     </h3>
-                    <div
-                        className={`mx-auto mt-2 h-0.5 w-14 rounded ${underlineColor}`}
-                        aria-hidden="true"
-                    />
+                    <div className={`mx-auto mt-2 h-0.5 w-14 rounded ${underlineColor}`} aria-hidden="true" />
                 </header>
 
-                {/* Cards：手機單欄、平板雙欄、桌機三欄；微浮動與進場動畫 */}
-                <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    {items.map((text, i) => (
-                        <Card key={i} text={text} cardCls={cardCls} delayMs={80 + i * 80} />
+                <div className="mt-10 space-y-6 md:hidden">
+                    {items.map(({ text, Icon }, i) => (
+                        <div
+                            key={`m-${i}`}
+                            className="flex items-center gap-4"
+                        >
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-yellow-50 flex-shrink-0">
+                                <Icon className="h-5 w-5" />
+                            </div>
+                            <p className="leading-relaxed">{text}</p>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-10 hidden md:grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {items.map(({ text, Icon }, i) => (
+                        <div
+                            key={`d-${i}`}
+                            className={[
+                                "group rounded-2xl  p-6 leading-relaxed text-center shadow-sm",
+                                "transform transition-all duration-700 ease-out hover:-translate-y-1.5 hover:shadow-lg",
+                                cardCls,
+                            ].join(" ")}
+                            style={{ transitionDelay: `${80 + i * 80}ms` }}
+                        >
+                            <div
+                                className={[
+                                    "mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-105",
+                                    isDark
+                                        ? " text-yellow-50"
+                                        : " text-emerald-700",
+                                ].join(" ")}
+                            >
+                                <Icon className="h-10 w-10" />
+                            </div>
+                            <p>{text}</p>
+                        </div>
                     ))}
                 </div>
             </Container>
-
-            <style>{`
-        @keyframes float-soft { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-4px) } }
-      `}</style>
         </section>
     );
-
-    function Card({ text, cardCls, delayMs = 80 }: { text: string; cardCls: string; delayMs?: number }) {
-        const { ref, inView } = useInView<HTMLDivElement>(0.14);
-        return (
-            <article
-                ref={ref}
-                className={[
-                    "rounded-2xl border p-5 leading-relaxed shadow-sm",
-                    "transform transition-all duration-700 ease-out hover:-translate-y-1",
-                    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
-                    cardCls,
-                ].join(" ")}
-                style={{ transitionDelay: inView ? `${delayMs}ms` : undefined }}
-            >
-                {text}
-            </article>
-        );
-    }
 }

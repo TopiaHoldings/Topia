@@ -279,10 +279,7 @@ function StepBlock({
 
     const Row = ({ left, right }: { left: React.ReactNode; right: React.ReactNode }) => (
         <div ref={ref} className="mt-12 md:mt-16">
-            {/* <div className="full-bleed grid grid-cols-10 items-stretch">
-                <div className="col-span-10 md:col-span-4 flex items-center">{left}</div>
-                <div className="col-span-10 md:col-span-6">{right}</div>
-            </div> */}
+
             <div className="full-bleed grid grid-cols-10 items-stretch">
                 <div className="col-span-10 md:col-span-3 flex items-center">{left}</div>
                 <div className="col-span-10 md:col-span-7">{right}</div>
@@ -303,9 +300,13 @@ function StepBlock({
     if (variant === "image-left") {
         return (
             <div ref={ref} className="mt-12 md:mt-16">
-                <div className="full-bleed grid grid-cols-10 items-stretch">
-                    <div className="col-span-10 md:col-span-6">{SingleImage}</div>
-                    <div className="col-span-10 md:col-span-4 flex items-center">{TextCard}</div>
+                <div className="full-bleed grid grid-cols-10 items-stretch gap-y-3">
+                    <div className="col-span-10 md:col-span-4 order-1 md:order-2 flex items-center">
+                        {TextCard}
+                    </div>
+                    <div className="col-span-10 md:col-span-6 order-2 md:order-1">
+                        {SingleImage}
+                    </div>
                 </div>
             </div>
         );
@@ -314,9 +315,13 @@ function StepBlock({
     if (variant === "image-left-duo") {
         return (
             <div ref={ref} className="mt-12 md:mt-16">
-                <div className="full-bleed grid grid-cols-10 items-stretch">
-                    <div className="col-span-10 md:col-span-6">{DuoSquares}</div>
-                    <div className="col-span-10 md:col-span-4 flex items-center">{TextCard}</div>
+                <div className="full-bleed grid grid-cols-10 items-stretch gap-y-3">
+                    <div className="col-span-10 md:col-span-4 order-1 md:order-2 flex items-center">
+                        {TextCard}
+                    </div>
+                    <div className="col-span-10 md:col-span-6 order-2 md:order-1">
+                        {DuoSquares}
+                    </div>
                 </div>
             </div>
         );

@@ -92,7 +92,6 @@ export default function About() {
               </span>
             </p>
 
-            {/* Values */}
             <ul className="mt-6 grid gap-4 sm:gap-5 sm:grid-cols-2">
               {VALUES.map((v, i) => (
                 <li
