@@ -13,7 +13,6 @@ export default function CookieBanner() {
         }
     }, []);
 
-
     function handleConsent(choice: "accepted" | "declined") {
         localStorage.setItem("cookie-consent", choice);
         if (choice === "accepted") {
