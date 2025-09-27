@@ -1,7 +1,7 @@
 # Topia Holdings Website
 
 This is a repo for **Topia Holdings**.
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/35da72d8-a2eb-4bae-bb17-87d5f491196e/deploy-status)](https://app.netlify.com/projects/topiaholdings/deploys)
 
 ## Project Structure
 

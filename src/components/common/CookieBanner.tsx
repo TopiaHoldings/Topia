@@ -7,7 +7,6 @@ export default function CookieBanner() {
 
     useEffect(() => {
         const consent = localStorage.getItem("cookie-consent");
-        // console.log(consent);
         if (!consent) {
             setVisible(true);
         }
@@ -16,7 +15,7 @@ export default function CookieBanner() {
     function handleConsent(choice: "accepted" | "declined") {
         localStorage.setItem("cookie-consent", choice);
         if (choice === "accepted") {
-            document.dispatchEvent(new CustomEvent("loadGA", { detail: "G-JY0BNJRZS6" }));
+            document.dispatchEvent(new CustomEvent("loadGA", { detail: "G-9F2DYH8R62" }));
             console.log("Google Analytics loaded");
         }
         setVisible(false);

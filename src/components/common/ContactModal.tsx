@@ -102,7 +102,7 @@ export default function ContactModal({ open, onClose, title = "Contact Us" }: Pr
                             method="POST"
                             data-netlify="true"
                             netlify-honeypot="bot-field"
-                            noValidate
+                            // noValidate
                             className="space-y-6"
                         >
 
