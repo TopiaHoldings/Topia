@@ -27,13 +27,6 @@ const members: Member[] = [
     },
 
     {
-        id: "travis",
-        name: "Travis Langdale",
-        role: "Chief Sales & Marketing",
-        bio: "20+ years in recycling and industrial services. Expert in market expansion and partnership building, driving high-value collaborations and operational sustainability.",
-        avatar: "/images/teams/tl.jpeg",
-    },
-    {
         id: "marijke",
         name: "Marijke Long",
         role: "Chief Networking Officer",
@@ -140,7 +133,7 @@ export default function Teams({ mode = "light" }: { mode?: Mode }) {
 
 
                 <ul
-                    className="mt-10 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+                    className="mt-10 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                     aria-label="Team members"
                 >
                     {rest.map((m, i) => (
