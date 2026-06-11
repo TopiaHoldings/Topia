@@ -65,7 +65,7 @@ export default function Process({ mode = "dark" }: { mode?: Mode }) {
                     desc="Stage and store by polymer/resin family with tracked batches for traceability."
                     mode={mode}
                     variant="image-left"
-                    baseImg="/images/p/operation/L1310812.jpeg"
+                    baseImg="/images/p/operation/L1330891.jpeg"
                 />
 
                 {/* <ArrowBetween mode={mode} /> */}

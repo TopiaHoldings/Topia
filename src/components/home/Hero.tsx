@@ -29,7 +29,7 @@ export default function Hero({
                     <div
                         className="absolute inset-0 pointer-events-none"
                         style={{
-                            background: "linear-gradient(to right, #0F1B04 20%, transparent 60%)",
+                            background: "linear-gradient(to right, #0F1B04 5%, transparent 15%)",
                         }}
                     />
                 </div>
