@@ -86,7 +86,7 @@ export default function Process({ mode = "dark" }: { mode?: Mode }) {
                 <StepBlock
                     index={4}
                     title="Processing"
-                    desc="Shredding, washing, and extrusion. Closed-loop water systems and in-line QC."
+                    desc=" Large-batch processing: through shredding, grinding, sink-float washing, and advanced mechanical-separation systems for ferrous and non-ferrous metals and other contaminants, followed by post-process homogenization. Offering off-take and closed-loop programs all with continuous in-line QC."
                     mode={mode}
                     variant="image-left-duo"
                     imgOne="/images/p/operation/L1310843.jpeg"
@@ -365,7 +365,7 @@ function MaterialsPanel({ mode }: { mode: Mode }) {
             <div className={`rounded-2xl ${wrap} backdrop-blur-sm shadow-md p-6 md:p-8`}>
                 <h4 className={`text-2xl md:text-3xl font-semibold ${title}`}>The materials we can process</h4>
                 <ul className={`mt-4 space-y-2 text-lg leading-relaxed ${text}`}>
-                    <li className="list-disc ml-5">Post-industrial plastics (HDPE, LDPE, PP, PS, PET, ABS, PC, Nylon)</li>
+                    <li className="list-disc ml-5">Post-industrial plastics (HDPE, LDPE, PP, PS, PET, ABS, PC, Nylon, and many others)</li>
                     <li className="list-disc ml-5">Select post-consumer rigid plastics</li>
                     <li className="list-disc ml-5">Polymer-family mixed streams after pre-sort</li>
                     <li className="list-disc ml-5">Film and regrind suitable for wash/line intake</li>

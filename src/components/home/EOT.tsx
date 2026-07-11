@@ -64,7 +64,7 @@ export default function EOT({ mode = "light" }: { mode?: Mode }) {
     const cardBorder = isDark ? "border-white/20" : "border-green-700/20";
     const cardBg = isDark ? "bg-white/10" : "bg-white";
     const kickerCls = isDark ? "text-yellow-50" : "text-green-700";
-
+    const url_clip = 'https://youtu.be/uAIJNFlWgiU?si=gzGyP0Yj7dL2s_xL&t=595';
     return (
         <section id="EOT" ref={sectionRef} className={`relative isolate w-full ${wrapCls}`}>
             <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
@@ -104,7 +104,7 @@ export default function EOT({ mode = "light" }: { mode?: Mode }) {
                                 employee ownership trust (EOT)
                             </span>{" "}
                             is a governance model where a trust holds a controlling interest in a
-                            company on behalf of its employees.
+                            company on behalf of its employees. <a href={url_clip} target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600 transition-colors">Click to learn more.</a>
                         </p>
 
                     </div>

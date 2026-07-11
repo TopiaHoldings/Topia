@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+.claude/
+.vscode/
+
+keywords.md
+src/components/home/About1.tsx

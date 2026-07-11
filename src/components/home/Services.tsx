@@ -1,6 +1,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Container from "../common/Container";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 
 type Service = {
   id: string;
@@ -80,6 +81,64 @@ export default function Services({ mode = "light" }: { mode?: Mode }) {
     return () => io.disconnect();
   }, []);
 
+  // video playback (same behavior as About)
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const userPausedRef = useRef(false);
+
+  const togglePlay = () => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    if (vid.paused) {
+      userPausedRef.current = false;
+      vid.play().catch(() => { });
+    } else {
+      userPausedRef.current = true;
+      vid.pause();
+    }
+  };
+
+  const toggleMute = () => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    vid.muted = !vid.muted;
+    setIsMuted(vid.muted);
+  };
+
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+
+    const onPlay = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
+    vid.addEventListener("play", onPlay);
+    vid.addEventListener("pause", onPause);
+
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) {
+      return () => {
+        vid.removeEventListener("play", onPlay);
+        vid.removeEventListener("pause", onPause);
+      };
+    }
+
+    const vidIo = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!userPausedRef.current) vid.play().catch(() => { });
+      } else {
+        vid.pause();
+      }
+    }, { threshold: 0.3 });
+    vidIo.observe(vid);
+
+    return () => {
+      vidIo.disconnect();
+      vid.removeEventListener("play", onPlay);
+      vid.removeEventListener("pause", onPause);
+    };
+  }, []);
+
   return (
     <section id="services" className={`py-16 md:py-24 ${sectionBg}`}>
       <Container>
@@ -98,19 +157,65 @@ export default function Services({ mode = "light" }: { mode?: Mode }) {
           </p>
         </header>
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s, i) => (
-            <ServiceCard
-              key={s.id}
-              service={s}
-              cardImgBg={cardImgBg}
-              cardTitle={cardTitle}
-              cardDesc={cardDesc}
-              ctaColor={ctaColor}
-              // stagger reveal by index
-              delayMs={80 + i * 80}
-            />
-          ))}
+        <div className="mt-10 grid items-center gap-10 md:gap-14 md:grid-cols-12">
+          {/* Left: services stacked vertically */}
+          <div className="md:col-span-7 flex flex-col gap-8 md:gap-10">
+            {services.map((s, i) => (
+              <ServiceCard
+                key={s.id}
+                service={s}
+                cardImgBg={cardImgBg}
+                cardTitle={cardTitle}
+                cardDesc={cardDesc}
+                ctaColor={ctaColor}
+                // stagger reveal by index
+                delayMs={80 + i * 80}
+              />
+            ))}
+          </div>
+
+          {/* Right: vertical video */}
+          <div className="md:col-span-5">
+            <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-slate-900 shadow-sm aspect-[9/16]">
+              <video
+                ref={videoRef}
+                className="h-full w-full object-cover"
+                src="/images/videos/clip2.mp4"
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Topia recycling services in action"
+              />
+              <button
+                type="button"
+                onClick={togglePlay}
+                aria-label={isPlaying ? "Pause video" : "Play video"}
+                className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-black/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                {isPlaying ? <FaPause className="text-sm" /> : <FaPlay className="ml-0.5 text-sm" />}
+              </button>
+              <button
+                type="button"
+                onClick={toggleMute}
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+                className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-black/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                {isMuted ? <FaVolumeMute className="text-sm" /> : <FaVolumeUp className="text-sm" />}
+              </button>
+            </div>
+            <p className={`mx-auto mt-2 w-full max-w-sm text-center text-xs ${isDark ? "text-stone-50/80" : "text-slate-400"}`}>
+              {/* with Beyond the Bulldog ·{" "} */}
+              <a
+                href="https://youtu.be/uAIJNFlWgiU?si=Zc5vPiDZKnSdzC20"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`underline transition-colors ${isDark ? "hover:text-white" : "hover:text-slate-600"}`}
+              >
+                click to watch full version
+              </a>
+            </p>
+          </div>
         </div>
       </Container>
 
@@ -137,33 +242,32 @@ function ServiceCard({
   delayMs?: number;
 }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.14);
-  const hasMotionPref = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   return (
     <article
       ref={ref}
       className={[
-        "group space-y-4 transform transition-all duration-700 ease-out",
+        "group flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6",
+        "transform transition-all duration-700 ease-out",
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
         "hover:-translate-y-1",
       ].join(" ")}
       style={{ transitionDelay: inView ? `${delayMs}ms` : undefined }}
     >
       {service.image && (
-        <div className={`w-full rounded-2xl overflow-hidden ${cardImgBg}`}>
+        <div className={`w-full sm:w-48 shrink-0 rounded-2xl overflow-hidden ${cardImgBg}`}>
           <img
             src={service.image}
             alt={service.title}
-            className="w-full h-56 object-cover transition-transform duration-500 ease-in-out group-hover:scale-[1.04]"
+            className="w-full h-40 sm:h-32 object-cover transition-transform duration-500 ease-in-out group-hover:scale-[1.04]"
             loading="lazy"
           />
         </div>
       )}
 
-      <div className="space-y-3">
-        <h3 className={`text-lg font-semibold ${cardTitle} text-center`}>{service.title}</h3>
+      <div className="space-y-2">
+        <h3 className={`text-lg font-semibold ${cardTitle}`}>{service.title}</h3>
         <p className={`leading-relaxed ${cardDesc}`}>{service.description}</p>
-
       </div>
     </article>
   );
