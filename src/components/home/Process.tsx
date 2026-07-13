@@ -89,9 +89,12 @@ export default function Process({ mode = "dark" }: { mode?: Mode }) {
                     desc=" Large-batch processing: through shredding, grinding, sink-float washing, and advanced mechanical-separation systems for ferrous and non-ferrous metals and other contaminants, followed by post-process homogenization. Offering off-take and closed-loop programs all with continuous in-line QC."
                     mode={mode}
                     variant="image-left-duo"
-                    imgOne="/images/p/operation/L1310843.jpeg"
-                    imgTwo="/images/p/operation/L1310855.jpeg"
+                    imgOne="/images/p/operation/L1330859.jpeg"
+                    imgTwo="/images/p/operation/L1330836.jpeg"
+                    seamDot
                 />
+
+                <CapabilitiesReveal mode={mode} />
 
                 {/* <ArrowBetween mode={mode} /> */}
 
@@ -102,13 +105,43 @@ export default function Process({ mode = "dark" }: { mode?: Mode }) {
                     desc="High-quality regrinds/pellets, tested in lab and delivered or reintroduced in closed-loop."
                     mode={mode}
                     variant="centered"
-                    baseImg="/images/p/operation/L1310769.jpeg"
+                    baseImg="/images/p/operation/color_regrind_bgr.png"
                 />
             </div>
 
             <style>{`
         @keyframes bounce-slow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
         .animate-bounce-slow { animation: bounce-slow 1.6s ease-in-out infinite; }
+
+        @keyframes dot-pulse {
+          0%,100% { box-shadow: 0 0 10px 3px rgba(255,226,69,.55); }
+          50%     { box-shadow: 0 0 18px 7px rgba(255,226,69,.9); }
+        }
+        .dot-glow { animation: dot-pulse 2s ease-in-out infinite; }
+
+        @keyframes line-pulse {
+          0%,100% { filter: drop-shadow(0 0 2px rgba(255,226,69,.35)); }
+          50%     { filter: drop-shadow(0 0 7px rgba(255,226,69,.9)); }
+        }
+        .line-glow { animation: line-pulse 2s ease-in-out infinite; }
+
+        @keyframes line-pulse-light {
+          0%,100% { filter: drop-shadow(0 0 2px rgba(4,120,87,.3)); }
+          50%     { filter: drop-shadow(0 0 7px rgba(4,120,87,.75)); }
+        }
+        .line-glow-light { animation: line-pulse-light 2s ease-in-out infinite; }
+
+        @keyframes card-pulse {
+          0%,100% { box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 0 12px 2px rgba(254,252,232,.2); }
+          50%     { box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 0 26px 8px rgba(254,252,232,.5); }
+        }
+        .card-glow { animation: card-pulse 2s ease-in-out infinite; }
+
+        @keyframes card-pulse-light {
+          0%,100% { box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 0 12px 2px rgba(4,120,87,.12); }
+          50%     { box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 0 26px 8px rgba(4,120,87,.3); }
+        }
+        .card-glow-light { animation: card-pulse-light 2s ease-in-out infinite; }
 
         .full-bleed {
           width: 100vw;
@@ -153,7 +186,7 @@ type StepVariant =
 
 function StepBlock({
     index, title, desc, mode, variant,
-    baseImg, overlayImg, imgOne, imgTwo,
+    baseImg, overlayImg, imgOne, imgTwo, seamDot,
 }: {
     index: number;
     title: string;
@@ -164,6 +197,7 @@ function StepBlock({
     overlayImg?: string;
     imgOne?: string;
     imgTwo?: string;
+    seamDot?: boolean;
 }) {
     const { ref, inView } = useInView<HTMLDivElement>(0.15);
     const isDark = mode === "dark";
@@ -206,7 +240,7 @@ function StepBlock({
     const SingleImage = baseImg ? (
         <div
             className={[
-                "img-crop overflow-hidden w-full",
+                variant === "centered" ? "overflow-hidden w-full" : "img-crop overflow-hidden w-full",
                 "transform transition-all duration-700 ease-out",
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
             ].join(" ")}
@@ -216,7 +250,7 @@ function StepBlock({
                 src={baseImg}
                 alt=""
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+                className={`${variant === "centered" ? "w-full h-auto object-contain" : "h-full w-full object-cover"} transition-transform duration-500 ease-in-out hover:scale-105`}
             />
         </div>
     ) : null;
@@ -224,12 +258,18 @@ function StepBlock({
     const DuoSquares = imgOne && imgTwo ? (
         <div
             className={[
-                "img-crop overflow-hidden w-full",
+                "img-crop overflow-hidden w-full relative",
                 "transform transition-all duration-700 ease-out",
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
             ].join(" ")}
             style={{ transitionDelay: inView ? "140ms" : "0ms" }}
         >
+            {seamDot && (
+                <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+                    <span className={`absolute h-6 w-6 rounded-full animate-ping ${isDark ? "bg-yellow-50/50" : "bg-emerald-600/40"}`} />
+                    <span className={`relative h-3 w-3 rounded-full dot-glow ${isDark ? "bg-yellow-50" : "bg-emerald-600"}`} />
+                </div>
+            )}
             <div className="h-full w-full grid grid-cols-2 gap-0">
                 <div className="h-full w-full">
                     <img
@@ -327,6 +367,106 @@ function StepBlock({
         );
     }
     return null;
+}
+
+const CAPABILITIES = [
+    "Exceptionally large scale recycling recovery rates of up to 30,000 lbs. per hour for campaign or continuous processing.",
+    "Oversized material processing in our massive Weima WLK20 Super Jumbo Shredder.",
+    "Processing of hard to recover materials such as plastics with embedded metals, continuous ferrous and non-ferrous metal separation.",
+    "Adjustable bulk density separation.",
+    "Tailor-made mechanical solutions for ongoing recycling challenges.",
+];
+
+function CapabilitiesReveal({ mode }: { mode: Mode }) {
+    const isDark = mode === "dark";
+    const { ref, inView } = useInView<HTMLDivElement>(0.25);
+
+    const lineColor = isDark ? "text-yellow-50" : "text-emerald-700";
+    const wrap = isDark ? "bg-white/90" : "bg-white";
+    const title = isDark ? "text-green-600" : "text-emerald-700";
+    const text = isDark ? "text-green-600/90" : "text-slate-700";
+
+    const lineStyle: React.CSSProperties = {
+        opacity: inView ? 1 : 0,
+        transition: "opacity 700ms ease-out 100ms",
+    };
+    // 進場後才開始跟光點同節奏的微微閃爍
+    const lineGlow = inView ? (isDark ? "line-glow" : "line-glow-light") : "";
+    const cardGlow = inView ? (isDark ? "card-glow" : "card-glow-light") : "";
+
+    return (
+        <div ref={ref}>
+            {/* 折線：從 Step 4 兩圖交界的光點往下延伸到卡片 */}
+            <div className={`full-bleed ${lineColor}`} aria-hidden="true">
+                {/* 桌機：圖片欄佔 6/10，交界在 30% → 折到中央 */}
+                <svg className={`hidden md:block w-full h-24 ${lineGlow}`} viewBox="0 0 100 24" preserveAspectRatio="none">
+                    <polyline
+                        points="30,0 30,12 50,12 50,24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        vectorEffect="non-scaling-stroke"
+                        style={lineStyle}
+                    />
+                </svg>
+                {/* 手機：圖片滿版，交界在中央，直線往下 */}
+                <svg className={`md:hidden w-full h-14 ${lineGlow}`} viewBox="0 0 100 14" preserveAspectRatio="none">
+                    <polyline
+                        points="50,0 50,14"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        vectorEffect="non-scaling-stroke"
+                        style={lineStyle}
+                    />
+                </svg>
+            </div>
+
+            <div className="flex justify-center -mt-1">
+                <svg
+                    className={`h-5 w-5 ${lineColor} transition-opacity duration-500 ${lineGlow}`}
+                    style={{ opacity: inView ? 1 : 0, transitionDelay: inView ? "600ms" : "0ms" }}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                >
+                    <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+                </svg>
+            </div>
+
+            <div
+                className={[
+                    "max-w-4xl mx-auto mt-3 transform transition-all duration-700 ease-out",
+                    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+                ].join(" ")}
+                style={{ transitionDelay: inView ? "500ms" : "0ms" }}
+            >
+                <div className={`rounded-2xl ${wrap} backdrop-blur-sm shadow-md p-6 md:p-8 ${cardGlow}`}>
+                    <div className="flex items-center gap-2">
+                        <RiSparkling2Fill className={`h-6 w-6 ${title}`} />
+                        <h4 className={`text-2xl md:text-3xl font-semibold ${title}`}>Unique Capabilities</h4>
+                    </div>
+                    <ul className={`mt-4 space-y-2 text-lg leading-relaxed ${text}`}>
+                        {CAPABILITIES.map((item) => (
+                            <li key={item} className="list-disc ml-5">{item}</li>
+                        ))}
+                    </ul>
+                    <div className="mt-6 max-w-lg mx-auto">
+                        <img
+                            src="/images/p/operation/plastic_cap_clousers_cropped.png"
+                            alt=""
+                            loading="lazy"
+                            className="w-full h-auto object-contain transition-transform duration-500 ease-in-out hover:scale-105"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 function ArrowBetween({ mode }: { mode: Mode }) {
