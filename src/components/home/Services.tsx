@@ -176,6 +176,20 @@ export default function Services({ mode = "light" }: { mode?: Mode }) {
 
           {/* Right: vertical video */}
           <div className="md:col-span-5">
+            <div className="mx-auto mb-3 flex w-full max-w-sm items-center gap-3">
+              <span
+                className="h-px flex-1 bg-gradient-to-r from-transparent to-yellow-50/70"
+                aria-hidden="true"
+              />
+              <h3 className="flex items-center gap-2 text-sm md:text-base font-semibold text-white">
+                <FaPlay className="text-[10px] text-yellow-50" aria-hidden="true" />
+                Sustainability Without Sacrifice
+              </h3>
+              <span
+                className="h-px flex-1 bg-gradient-to-r from-yellow-50/70 to-transparent"
+                aria-hidden="true"
+              />
+            </div>
             <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-slate-900 shadow-sm aspect-[9/16]">
               <video
                 ref={videoRef}

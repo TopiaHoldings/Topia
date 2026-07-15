@@ -119,6 +119,20 @@ export default function About() {
             style={{ transitionDelay: inView ? "40ms" : "0ms" }}
           >
             <div className="relative">
+              <div className="mx-auto mb-3 flex w-full max-w-sm items-center gap-3">
+                <span
+                  className="h-px flex-1 bg-gradient-to-r from-transparent to-emerald-600/40"
+                  aria-hidden="true"
+                />
+                <h3 className="flex items-center gap-2 text-sm md:text-base font-semibold text-slate-800">
+                  <FaPlay className="text-[10px] text-emerald-600" aria-hidden="true" />
+                  Redefining Waste as Opportunity
+                </h3>
+                <span
+                  className="h-px flex-1 bg-gradient-to-r from-emerald-600/40 to-transparent"
+                  aria-hidden="true"
+                />
+              </div>
               <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-slate-900 shadow-sm aspect-[9/16]">
                 <video
                   ref={videoRef}
